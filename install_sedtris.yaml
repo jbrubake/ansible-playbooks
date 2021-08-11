@@ -1,25 +1,21 @@
 ---
-- name: "Check for binprint"
+- name: "Check for sedtris"
   stat:
-    path: "/usr/local/bin/binprint"
+    path: "/usr/local/games/sedtris"
   register: pkg
 
 - block:
-  - name: "Clone binprint repo"
+  - name: "Clone sedtris repo"
     ansible.builtin.git:
-      repo: https://github.com/jarun/binprint.git
-      dest: "/usr/local/src/binprint"
-  - name: "Build binprint"
-    make:
-      chdir: "/usr/local/src/binprint"
-      target: all
-  - name: "Install binprint"
+      repo: https://github.com/jbrubake/sedtris.git
+      dest: "/usr/local/src/sedtris"
+  - name: "Install sedtris"
     ansible.builtin.command:
       argv:
         - porg
         - "-lD"
-        - "install -t /usr/local/bin binprint"
-      chdir: "/usr/local/src/binprint"
+        - "make install"
+      chdir: "/usr/local/src/sedtris"
 
   when: not pkg.stat.exists
 ...
