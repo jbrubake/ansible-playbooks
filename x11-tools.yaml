@@ -1,6 +1,9 @@
+---
+
 - name: Install X11 advanced tools
   ansible.builtin.package:
     name:
       - GraphicsMagick
     state: present
+...
 

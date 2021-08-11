@@ -1,3 +1,5 @@
+---
+
 - name: Install X11 tools
   ansible.builtin.package:
     name:
@@ -8,4 +10,5 @@
       - sxhkd
       - feh            # imlib2 based image viewer
     state: present
+...
 

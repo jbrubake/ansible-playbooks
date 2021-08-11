@@ -1,3 +1,5 @@
+---
+
 - hosts: localhost
   connection: local
   become: true
@@ -21,9 +23,11 @@
           ansible.builtin.git:
             repo: "{{ item.repo }}"
             dest: "{{ item.dest }}"
-          # loop: "{{ pkgs }}"
+          loop: "{{ pkgs }}"
         - name: "Build and install {{ item.name }} from source"
           make:
             chdir: "{{ item.dest }}"
             target: install
-      loop: "{{ pkgs }}"
+          loop: "{{ pkgs }}"
+...
+

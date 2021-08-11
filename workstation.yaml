@@ -7,8 +7,10 @@
 
   tasks:
       - import_tasks: common-utils.yaml
-      # - include: advanced-utils.yaml
-      # - include: devtools.yaml
-      # - include: x11-tools.yaml
-      # - include: x11-advanced-tools.yaml
-      # - include: email.yaml
+      - import_tasks: advanced-utils.yaml
+      - import_tasks: devtools.yaml
+      - import_tasks: x11-tools.yaml
+      - import_tasks: x11-advanced-tools.yaml
+      - import_tasks: email.yaml
+...
+

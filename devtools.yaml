@@ -1,3 +1,5 @@
+---
+
 - name: Install development tools
   ansible.builtin.package:
     name:
@@ -9,13 +11,14 @@
       - wiggle
       - autoconf
       - automake
-      - pylint # python linter
-      - golang # --setopt=install_weak_deps=false
-      - black # Python formatter
+      - pylint        # python linter
+      - golang        # --setopt=install_weak_deps=false
+      - black         # Python formatter
       - python3-pip
       - make
       - hexyl
       - cargo
       - libtool
     state: present
+...
 
