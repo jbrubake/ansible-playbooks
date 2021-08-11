@@ -7,6 +7,8 @@
 
   tasks:
     - import_tasks: install_porg.yaml
+    - name: Load package info
+      include_vars: pkg_vars.yaml
     - import_tasks: build.yaml
     # - import_tasks: common-utils.yaml
     # - import_tasks: advanced-utils.yaml

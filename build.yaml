@@ -1,7 +1,5 @@
 ---
 
-- name: Load package info
-  include_vars: pkg_vars.yaml
 - name: Install packages
   include_tasks: build_tasks.yaml
   loop: "{{ pkgs }}"

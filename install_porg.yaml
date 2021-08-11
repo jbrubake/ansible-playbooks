@@ -1,5 +1,4 @@
 ---
-
 - name: "Check for porg"
   stat:
     path: "/usr/local/bin/porg"
