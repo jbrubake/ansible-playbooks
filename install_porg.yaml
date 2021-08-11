@@ -16,14 +16,21 @@
     register: pkg
 
   - block:
+    - name: "Install  {{ porg.name }} dependencies"
+      ansible.builtin.package:
+        name:
+          - gtkmm30-devel
+          - python3-html2text
+        state: present
+
     - name: "Clone {{ porg.name }} repo"
       ansible.builtin.git:
         repo: "{{ porg.repo }}"
         dest: "{{ porg.dest }}"
-    - name: "Configure {{porg.name}}"
+    - name: "Configure {{ porg.name }}"
       command: ./configure
       args:
-        chdir: "{{porg.dest}}"
+        chdir: "{{ porg.dest }}"
     - name: "Build {{ porg.name }}"
       make:
         chdir: "{{ porg.dest }}"
