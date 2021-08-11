@@ -1,26 +1,25 @@
 ---
-
-# - import_playbook: build.yaml
-
 - name: Build workstation
   hosts: localhost
 
   tasks:
-    - include_tasks: common-utils.yaml
-    - include_tasks: advanced-utils.yaml
-    - include_tasks: devtools.yaml
-    - include_tasks: x11-tools.yaml
-    - include_tasks: x11-advanced-tools.yaml
-    - include_tasks: email.yaml
+    - include_tasks: "{{ item }}.yaml"
+      loop:
+        - common-utils
+        - advanced-utils
+        - devtools
+        - x11-tools
+        - x11-advanced-tools
+        - email
 
-    # - import_tasks: install_porg.yaml
+    - include_tasks: install_porg.yaml
 
-    # - include_tasks: "install_{{ item }}.yaml"
-      # loop:
-        # - jumpapp
-        # - tdrop
-        # - gws
-        # - binprint
-        # - vimpager
+    - include_tasks: "install_{{ item }}.yaml"
+      loop:
+        - jumpapp
+        - tdrop
+        - gws
+        - binprint
+        - vimpager
 ...
 
