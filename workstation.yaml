@@ -6,12 +6,12 @@
   hosts: localhost
 
   tasks:
-    - import_tasks: common-utils.yaml
-    - import_tasks: advanced-utils.yaml
-    - import_tasks: devtools.yaml
-    - import_tasks: x11-tools.yaml
-    - import_tasks: x11-advanced-tools.yaml
-    - import_tasks: email.yaml
+    - include_tasks: common-utils.yaml
+    - include_tasks: advanced-utils.yaml
+    - include_tasks: devtools.yaml
+    - include_tasks: x11-tools.yaml
+    - include_tasks: x11-advanced-tools.yaml
+    - include_tasks: email.yaml
 
     # - import_tasks: install_porg.yaml
 
