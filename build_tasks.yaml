@@ -9,7 +9,11 @@
     ansible.builtin.git:
       repo: "{{ item.repo }}"
       dest: "{{ item.dest }}"
-  - name: "Build and install {{ item.name }} from source"
+  - name: "Build {{ item.name }}"
+    make:
+      chdir: "{{ item.dest }}"
+      target: all
+  - name: "Install {{ item.name }}"
     make:
       chdir: "{{ item.dest }}"
       target: install

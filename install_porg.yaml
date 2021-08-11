@@ -1,0 +1,34 @@
+---
+
+- hosts: localhost
+
+  vars:
+    porg:
+      - {name: "sedtris",
+         repo: "https://github.com/alinaresz/porg.git",
+         dest: "/usr/local/src/porg",
+         binary: "/usr/local/bin/porg"}
+
+  tasks:
+  - name: "Check for {{ porg.name }}"
+    stat:
+      path: "{{ porg.binary }}"
+    register: pkg
+
+  - block:
+    - name: "Clone {{ porg.name }} repo"
+      ansible.builtin.git:
+        repo: "{{ porg.repo }}"
+        dest: "{{ porg.dest }}"
+    - name: "Build {{ porg.name }}"
+      make:
+        chdir: "{{ porg.dest }}"
+        target: all
+    - name: "Install {{ porg.name }}"
+      make:
+        chdir: "{{ porg.dest }}"
+        target: install
+
+    when: not pkg.stat.exists
+...
+
