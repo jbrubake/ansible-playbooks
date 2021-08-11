@@ -1,8 +1,6 @@
 ---
 
 - hosts: localhost
-  connection: local
-  become: true
 
   vars:
     pkgs:
@@ -10,24 +8,8 @@
       - {name: "sedtris", repo: "https://github.com/jbrubake/sedtris.git", dest: "/usr/local/src/sedtris", binary: "/usr/local/games/sedtris"}
 
   tasks:
-    - name: "Check for {{ item.name }}"
-      stat:
-        path: "{{ item.binary }}"
-      register: pkg_path
-      loop: "{{ pkgs }}"
-
-    - name: "Install {{ item.name }} from source"
-      # when: "not pkg_path.stat.exists"
-      block:
-        - name: "Clone {{ item.name }} repo"
-          ansible.builtin.git:
-            repo: "{{ item.repo }}"
-            dest: "{{ item.dest }}"
-          loop: "{{ pkgs }}"
-        - name: "Build and install {{ item.name }} from source"
-          make:
-            chdir: "{{ item.dest }}"
-            target: install
-          loop: "{{ pkgs }}"
+      - name: Install packages
+        include_tasks: build_tasks.yaml
+        loop: "{{ pkgs }}"
 ...
 
