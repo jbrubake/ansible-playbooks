@@ -23,6 +23,6 @@
       - htop
       - nmap
       - sshuttle     # ssh based "VPN"
-  state: present
+    state: present
 ...
 

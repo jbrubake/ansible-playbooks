@@ -5,12 +5,12 @@
   tasks:
     - include_tasks: "{{ item }}.yaml"
       loop:
-        # - common-utils
+        - common-utils
         - advanced-utils
-        # - devtools
-        # - x11-tools
-        # - x11-advanced-tools
-        # - email
+        - devtools
+        - x11-tools
+        - x11-advanced-tools
+        - email
 
     - include_tasks: install_porg.yaml
 
