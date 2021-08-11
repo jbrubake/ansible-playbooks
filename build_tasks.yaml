@@ -9,12 +9,11 @@
     ansible.builtin.git:
       repo: "{{ item.repo }}"
       dest: "{{ item.dest }}"
-    # when: not pkg.stat.exists
   - name: "Build and install {{ item.name }} from source"
     make:
       chdir: "{{ item.dest }}"
       target: install
-    # when: not pkg.stat.exists
+
   when: not pkg.stat.exists
 ...
 
