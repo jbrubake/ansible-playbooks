@@ -21,7 +21,7 @@
       argv:
         - porg
         - "-lD"
-        - "install completions/bash /usr/local/etc/bash_completion.d/gws
+        - "install completions/bash /usr/local/etc/bash_completion.d/gws"
 
   when: not pkg.stat.exists
 ...
