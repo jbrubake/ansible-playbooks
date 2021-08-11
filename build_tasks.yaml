@@ -15,8 +15,8 @@
 #     # path: "{{ item.binary }}"
 #     # register: pkg_path
 
-- name: "Install {{ item.name }} from source"
-  when: "not pkg_path.stat.exists"
+# - name: "Install {{ item.name }} from source"
+  # when: "not pkg_path.stat.exists"
 
 - name: "Clone {{ item.name }} repo"
   ansible.builtin.git:
