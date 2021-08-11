@@ -1,0 +1,21 @@
+---
+- name: "Check for sedtris"
+  stat:
+    path: "/usr/local/bin/sedtris"
+  register: pkg
+
+- block:
+  - name: "Clone sedtris repo"
+    ansible.builtin.git:
+      repo: https://github.com/jbrubake/sedtris.git
+      dest: "/usr/local/src/sedtris"
+  - name: "Install sedtris"
+    ansible.builtin.command:
+      argv:
+        - porg
+        - "-lD"
+        - "make install"
+      chdir: "/usr/local/src/sedtris"
+
+  when: not pkg.stat.exists
+...

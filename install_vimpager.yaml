@@ -1,0 +1,28 @@
+---
+- name: "Check for vimpager"
+  stat:
+    path: "/usr/local/bin/vimpager"
+  register: pkg
+
+- block:
+  - name: "Install vimpager dependencies"
+    ansible.builtin.package:
+      name:
+        - pandoc
+        - sharutils
+      state: present
+
+  - name: "Clone vimpager repo"
+    ansible.builtin.git:
+      repo: https://github.com/rkitover/vimpager.git
+      dest: "/usr/local/src/vimpager"
+  - name: "Install vimpager"
+    ansible.builtin.command:
+      argv:
+        - porg
+        - "-lD"
+        - "make install"
+      chdir: "/usr/local/src/vimpager"
+
+  when: not pkg.stat.exists
+...

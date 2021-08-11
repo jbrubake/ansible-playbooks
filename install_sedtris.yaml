@@ -1,0 +1,25 @@
+---
+- name: "Check for binprint"
+  stat:
+    path: "/usr/local/bin/binprint"
+  register: pkg
+
+- block:
+  - name: "Clone binprint repo"
+    ansible.builtin.git:
+      repo: https://github.com/jarun/binprint.git
+      dest: "/usr/local/src/binprint"
+  - name: "Build binprint"
+    make:
+      chdir: "/usr/local/src/binprint"
+      target: all
+  - name: "Install binprint"
+    ansible.builtin.command:
+      argv:
+        - porg
+        - "-lD"
+        - "install -t /usr/local/bin binprint"
+      chdir: "/usr/local/src/binprint"
+
+  when: not pkg.stat.exists
+...

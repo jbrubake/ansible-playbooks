@@ -1,0 +1,29 @@
+---
+- name: "Check for tdrop"
+  stat:
+    path: "/usr/local/bin/tdrop"
+  register: pkg
+
+- block:
+  - name: "Install tdrop dependencies"
+    ansible.builtin.package:
+      name:
+        - xprop
+        - xdotool
+        - xwininfo
+      state: present
+
+  - name: "Clone tdrop repo"
+    ansible.builtin.git:
+      repo: https://github.com/noctuid/tdrop.git
+      dest: "/usr/local/src/tdrop"
+  - name: "Install tdrop"
+    ansible.builtin.command:
+      argv:
+        - porg
+        - "-lD"
+        - "make install"
+      chdir: "/usr/local/src/tdrop"
+
+  when: not pkg.stat.exists
+...

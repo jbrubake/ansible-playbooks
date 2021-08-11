@@ -18,5 +18,9 @@
     - include_tasks: "install_{{ item }}.yaml"
       loop:
         - jumpapp
+        - tdrop
+        - gws
+        - binprint
+        - vimpager
 ...
 

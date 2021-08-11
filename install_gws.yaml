@@ -1,0 +1,27 @@
+---
+- name: "Check for gws"
+  stat:
+    path: "/usr/local/bin/gws"
+  register: pkg
+
+- block:
+  - name: "Clone gws repo"
+    ansible.builtin.git:
+      repo: https://github.com/streakycobra/gws.git
+      dest: "/usr/local/src/gws"
+  - name: "Install gws"
+    ansible.builtin.command:
+      argv:
+        - porg
+        - "-lD"
+        - "install -t /usr/local/bin src/gws"
+      chdir: "/usr/local/src/gws"
+  - name: "Install gws bash completions"
+    ansible.builtin.command:
+      argv:
+        - porg
+        - "-lD"
+        - "install completions/bash /usr/local/etc/bash_completion.d/gws
+
+  when: not pkg.stat.exists
+...
