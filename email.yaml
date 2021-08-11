@@ -1,0 +1,15 @@
+- name: Install email tools
+  ansible.builtin.package:
+    name:
+      - isync        # mbsync mail sync
+      - msmtp        # MTA
+      - notmuch      # mail indexer
+      - imapfilter   # filter IMAP mailbox
+      - notmuch-mutt # integrate notmuch with mutt
+      - elinks       # text mode web browser
+      - t-prot       # mutt TOFU elimination
+      - urlscan      # list URLs in mutt emails
+      - compface     # compress/decompress images for mailheaders (for X-Face:)
+      - netpbm       # convert various image formats (for X-Face:)
+    state: present
+

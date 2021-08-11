@@ -1,0 +1,21 @@
+- name: Install development tools
+  ansible.builtin.package:
+    name:
+      - doxygen       # code documentation framework
+      - gdb                # debugger
+      - valgrind      # find memory leaks
+      - cscope        # search C source code
+      - tig
+      - wiggle
+      - autoconf
+      - automake
+      - pylint # python linter
+      - golang # --setopt=install_weak_deps=false
+      - black # Python formatter
+      - python3-pip
+      - make
+      - hexyl
+      - cargo
+      - libtool
+    state: present
+

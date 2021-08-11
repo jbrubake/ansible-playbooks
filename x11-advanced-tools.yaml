@@ -1,0 +1,11 @@
+- name: Install X11 tools
+  ansible.builtin.package:
+    name:
+      - wmctrl
+      - xdotool
+      - xautolock
+      - xbanish
+      - sxhkd
+      - feh            # imlib2 based image viewer
+    state: present
+

@@ -1,0 +1,16 @@
+---
+
+- name: Install common utilities
+  ansible.builtin.package:
+    name:
+      - moreutils    # various utils (errno, sponge, etc)
+      - pass         # the standard UNIX password manager
+      - keychain
+      - tmux
+      - curl
+      - unzip
+      - tree
+      - dash           # Make /bin/sh a link to this
+    state: present
+
+...

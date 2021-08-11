@@ -1,0 +1,14 @@
+---
+
+# - import_playbook: build.yaml
+
+- name: Build workstation
+  hosts: localhost
+
+  tasks:
+      - import_tasks: common-utils.yaml
+      # - include: advanced-utils.yaml
+      # - include: devtools.yaml
+      # - include: x11-tools.yaml
+      # - include: x11-advanced-tools.yaml
+      # - include: email.yaml
