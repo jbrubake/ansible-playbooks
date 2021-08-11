@@ -1,19 +1,20 @@
 ---
 
-- name: "Check for {{ item.name }}"
-    stat:
-    path: "{{ item.binary }}"
-    register: pkg_path
+# - name: "Check for {{ item.name }}"
+    # stat:
+    # path: "{{ item.binary }}"
+    # register: pkg_path
 
-- name: "Install {{ item.name }} from source"
+# - name: "Install {{ item.name }} from source"
     # when: "not pkg_path.stat.exists"
-    - name: "Clone {{ item.name }} repo"
-        ansible.builtin.git:
-        repo: "{{ item.repo }}"
-        dest: "{{ item.dest }}"
-    - name: "Build and install {{ item.name }} from source"
-        make:
-        chdir: "{{ item.dest }}"
-        target: install
+
+- name: "Clone {{ item.name }} repo"
+    ansible.builtin.git:
+    repo: "{{ item.repo }}"
+    dest: "{{ item.dest }}"
+- name: "Build and install {{ item.name }} from source"
+    make:
+    chdir: "{{ item.dest }}"
+    target: install
 ...
 
