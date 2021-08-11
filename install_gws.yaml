@@ -20,7 +20,7 @@
     ansible.builtin.command:
       argv:
         - porg
-        - "-lD"
+        - "-+D"
         - "install completions/bash /usr/local/etc/bash_completion.d/gws"
       chdir: "/usr/local/src/gws"
 
