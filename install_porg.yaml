@@ -29,17 +29,20 @@
         repo: "{{ porg.repo }}"
         dest: "{{ porg.dest }}"
     - name: "Configure {{ porg.name }}"
-      command: ./configure
+      ansible.builtin.command: ./configure
       args:
         chdir: "{{ porg.dest }}"
     - name: "Build {{ porg.name }}"
       make:
         chdir: "{{ porg.dest }}"
         target: all
-    # - name: "Install {{ porg.name }}"
-      # make:
-        # chdir: "{{ porg.dest }}"
-        # target: install
+    - name: "Install {{ porg.name }}"
+      ansible.builtin.command:
+        argv:
+          - porg/porg
+          - "-lD"
+          - "make install"
+        chdir: "{{ porg.dest }}"
 
     when: not pkg.stat.exists
 ...
