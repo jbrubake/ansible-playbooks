@@ -5,9 +5,13 @@
   vars:
     pkgs:
       - {name: "vimpager",
-      repo: "https://github.com/rkitover/vimpager.git",
-      dest: "/usr/local/src/vimpager", binary: "/usr/local/bin/vimpager"}
-      - {name: "sedtris", repo: "https://github.com/jbrubake/sedtris.git", dest: "/usr/local/src/sedtris", binary: "/usr/local/games/sedtris"}
+         repo: "https://github.com/rkitover/vimpager.git",
+         dest: "/usr/local/src/vimpager",
+         binary: "/usr/local/bin/vimpager"}
+      - {name: "sedtris",
+         repo: "https://github.com/jbrubake/sedtris.git",
+         dest: "/usr/local/src/sedtris",
+         binary: "/usr/local/games/sedtris"}
 
   tasks:
     - name: Install packages
