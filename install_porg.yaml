@@ -4,10 +4,10 @@
 
   vars:
     porg:
-      - {name: "sedtris",
-         repo: "https://github.com/alinaresz/porg.git",
-         dest: "/usr/local/src/porg",
-         binary: "/usr/local/bin/porg"}
+      name: "porg",
+      repo: "https://github.com/alinaresz/porg.git",
+      dest: "/usr/local/src/porg",
+      binary: "/usr/local/bin/porg"
 
   tasks:
   - name: "Check for {{ porg.name }}"
