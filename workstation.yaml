@@ -6,6 +6,7 @@
   hosts: localhost
 
   tasks:
+    - import_tasks: install_porg.yaml
     # - import_tasks: common-utils.yaml
     # - import_tasks: advanced-utils.yaml
     # - import_tasks: devtools.yaml

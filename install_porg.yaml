@@ -1,49 +1,39 @@
 ---
 
-- hosts: localhost
+- name: "Check for porg"
+  stat:
+    path: "/usr/local/bin/porg"
+  register: pkg
 
-  vars:
-    porg:
-      name: porg
+- block:
+  - name: "Install  porg dependencies"
+    ansible.builtin.package:
+      name:
+        - gtkmm30-devel
+        - python3-html2text
+        - gcc-c++
+      state: present
+
+  - name: "Clone porg repo"
+    ansible.builtin.git:
       repo: https://github.com/alinaresz/porg.git
-      dest: /usr/local/src/porg
-      binary: /usr/local/bin/porg
+      dest: "/usr/local/src/porg"
+  - name: "Configure porg"
+    ansible.builtin.command: ./configure
+    args:
+      chdir: "/usr/local/src/porg"
+  - name: "Build porg"
+    make:
+      chdir: "/usr/local/src/porg"
+      target: all
+  - name: "Install porg"
+    ansible.builtin.command:
+      argv:
+        - porg/porg
+        - "-lD"
+        - "make install"
+      chdir: "/usr/local/src/porg"
 
-  tasks:
-  - name: "Check for {{ porg.name }}"
-    stat:
-      path: "{{ porg.binary }}"
-    register: pkg
-
-  - block:
-    - name: "Install  {{ porg.name }} dependencies"
-      ansible.builtin.package:
-        name:
-          - gtkmm30-devel
-          - python3-html2text
-          - gcc-c++
-        state: present
-
-    - name: "Clone {{ porg.name }} repo"
-      ansible.builtin.git:
-        repo: "{{ porg.repo }}"
-        dest: "{{ porg.dest }}"
-    - name: "Configure {{ porg.name }}"
-      ansible.builtin.command: ./configure
-      args:
-        chdir: "{{ porg.dest }}"
-    - name: "Build {{ porg.name }}"
-      make:
-        chdir: "{{ porg.dest }}"
-        target: all
-    - name: "Install {{ porg.name }}"
-      ansible.builtin.command:
-        argv:
-          - porg/porg
-          - "-lD"
-          - "make install"
-        chdir: "{{ porg.dest }}"
-
-    when: not pkg.stat.exists
+  when: not pkg.stat.exists
 ...
 
