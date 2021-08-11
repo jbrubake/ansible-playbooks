@@ -21,6 +21,7 @@
         name:
           - gtkmm30-devel
           - python3-html2text
+          - g++
         state: present
 
     - name: "Clone {{ porg.name }} repo"
