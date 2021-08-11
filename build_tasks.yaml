@@ -1,30 +1,18 @@
 ---
-# - name: Copy using inline content to first file
-#   copy:
-#     content: |
-#       ip_address={{ item }}
-#     dest: /etc/some_config_file.conf
- 
-# - name: Copy using inline content to second file
-#   copy:
-#     content: |
-#       ip_address={{ item }}
-#     dest: /etc/some_other_config_file.conf
-# # - name: "Check for {{ item.name }}"
-#     # stat:
-#     # path: "{{ item.binary }}"
-#     # register: pkg_path
-
-# - name: "Install {{ item.name }} from source"
-  # when: "not pkg_path.stat.exists"
+- name: "Check for {{ item.name }}"
+  stat:
+    path: "{{ item.binary }}"
+  register: pkg
 
 - name: "Clone {{ item.name }} repo"
   ansible.builtin.git:
     repo: "{{ item.repo }}"
     dest: "{{ item.dest }}"
+  when: not pkg.stat.exists
 - name: "Build and install {{ item.name }} from source"
   make:
     chdir: "{{ item.dest }}"
     target: install
+  when: not pkg.stat.exists
 ...
 
