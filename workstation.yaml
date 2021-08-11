@@ -6,7 +6,7 @@
     - include_tasks: "{{ item }}.yaml"
       loop:
         - common-utils
-        - advanced-utils
+        # - advanced-utils
         - devtools
         - x11-tools
         - x11-advanced-tools
