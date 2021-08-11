@@ -8,9 +8,10 @@
   - name: "Install jumpapp dependencies"
     ansible.builtin.package:
       name:
+        - pandoc
         - xprop
-        - wmctrl
         - xdotool
+        - wmctrl
       state: present
 
   - name: "Clone jumpapp repo"
