@@ -20,14 +20,18 @@
       ansible.builtin.git:
         repo: "{{ porg.repo }}"
         dest: "{{ porg.dest }}"
+    - name: "Configure {{porg.name}}"
+      command: ./configure
+      args:
+        chdir: "{{porg.dest}}"
     - name: "Build {{ porg.name }}"
       make:
         chdir: "{{ porg.dest }}"
         target: all
-    - name: "Install {{ porg.name }}"
-      make:
-        chdir: "{{ porg.dest }}"
-        target: install
+    # - name: "Install {{ porg.name }}"
+      # make:
+        # chdir: "{{ porg.dest }}"
+        # target: install
 
     when: not pkg.stat.exists
 ...
