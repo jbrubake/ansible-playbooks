@@ -1,0 +1,33 @@
+---
+- name: "Check for jumpapp"
+  stat:
+    path: "/usr/local/bin/jumpapp"
+  register: pkg
+
+- block:
+  - name: "Install jumpapp dependencies"
+    ansible.builtin.package:
+      name:
+        - xprop
+        - wmctrl
+        - xdotool
+      state: present
+
+  - name: "Clone jumpapp repo"
+    ansible.builtin.git:
+      repo: https://github.com/mkropat/jumpapp.git
+      dest: "/usr/local/src/jumpapp"
+  - name: "Build jumpapp"
+    make:
+      chdir: "/usr/local/src/jumpapp"
+      target: all
+  - name: "Install jumpapp"
+    ansible.builtin.command:
+      argv:
+        - porg
+        - "-lD"
+        - "make install"
+      chdir: "/usr/local/src/jumpapp"
+
+  when: not pkg.stat.exists
+...
