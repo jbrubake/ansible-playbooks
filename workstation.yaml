@@ -18,6 +18,5 @@
     - include_tasks: "install_{{ item }}.yaml"
       loop:
         - jumpapp
-        - gws
 ...
 
