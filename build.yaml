@@ -8,8 +8,8 @@
       - {name: "sedtris", repo: "https://github.com/jbrubake/sedtris.git", dest: "/usr/local/src/sedtris", binary: "/usr/local/games/sedtris"}
 
   tasks:
-      - name: Install packages
-        include_tasks: build_tasks.yaml
-        loop: "{{ pkgs }}"
+    - name: Install packages
+      include_tasks: build_tasks.yaml
+      loop: "{{ pkgs }}"
 ...
 

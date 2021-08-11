@@ -2,27 +2,27 @@
 
 - name: Install advanced utilities
   ansible.builtin.package:
-      name:
-          - ripgrep
-          - fzf          # fuzzy file finder
-          - units        # convert units of measurement
-          - bcal         # storage expression calculator
-          - pdd          # calculate diff between dates/times
-          - ddgr         # search DuckDuckGo from the terminal
-          - figlet       # text banners
-          - toilet       # colorful text banners
-          - boxes        # text boxes
-          - pydf         # replaces dfc
-          - paperkey
-          - dialog
-          - rclone       # cloud sync
-          - newsboat
-          - fortune-mod
-          - pinfo      # better info viewer
-          - iftop
-          - htop
-          - nmap
-          - sshuttle     # ssh based "VPN"
-      state: present
+    name:
+      - ripgrep
+      - fzf          # fuzzy file finder
+      - units        # convert units of measurement
+      - bcal         # storage expression calculator
+      - pdd          # calculate diff between dates/times
+      - ddgr         # search DuckDuckGo from the terminal
+      - figlet       # text banners
+      - toilet       # colorful text banners
+      - boxes        # text boxes
+      - pydf         # replaces dfc
+      - paperkey
+      - dialog
+      - rclone       # cloud sync
+      - newsboat
+      - fortune-mod
+      - pinfo      # better info viewer
+      - iftop
+      - htop
+      - nmap
+      - sshuttle     # ssh based "VPN"
+  state: present
 ...
 
