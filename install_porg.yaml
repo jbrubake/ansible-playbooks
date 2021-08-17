@@ -15,7 +15,7 @@
 
   - name: "Clone porg repo"
     ansible.builtin.git:
-      repo: https://github.com/alinaresz/porg.git
+      repo: https://github.com/jbrubake/porg.git
       dest: "/usr/local/src/porg"
   - name: "Configure porg"
     ansible.builtin.command: ./configure
